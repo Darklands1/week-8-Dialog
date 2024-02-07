@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6c461d59e6cfe4486054e61e28873c, type: 3}
+  m_Name: TestDialog
+  m_EditorClassIdentifier: 
+  startNode:
+    dialogText: Hello Traveller! Can you help me gather some herbs from the forest?
+    choices:
+    - choiceText: Sure, I can help you.
+      nextNode:
+        dialogText: Thank you so much! I need some sage, it grows near the stream.
+        choices:
+        - choiceText: I'll be back soon with your herbs.
+          nextNode:
+            dialogText: 
+            choices: []
+          flagToSet: Accepted NPC1 Quest
+          flagValue: 1
+      flagToSet: 
+      flagValue: 0
+    - choiceText: No, I'm in a hurry.
+      nextNode:
+        dialogText: Oh, I understand. Safe travels!
+        choices: []
+      flagToSet: Didn't help NPC1
+      flagValue: 1
+  alternativeDialogs:
+  - flagRequired: Didn't help NPC1
+    alternativeStartNode:
+      dialogText: Hello again. Are you styill busy?
+      choices:
+      - choiceText: I'm free now, actually!
+        nextNode:
+          dialogText: 
+          choices: []
+        flagToSet: Didn't help NPC1
+        flagValue: 0
+      - choiceText: Sorry, still busy!
+        nextNode:
+          dialogText: 
+          choices: []
+        flagToSet: 
+        flagValue: 0
+  - flagRequired: Completed NPC1 Quest
+    alternativeStartNode:
+      dialogText: Thanks for helping me earlier.
+      choices: []
+  - flagRequired: Accepted NPC1 Quest
+    alternativeStartNode:
+      dialogText: Welcome back, did you find the sage?
+      choices:
+      - choiceText: Yes, here you go!
+        nextNode:
+          dialogText: 
+          choices: []
+        flagToSet: Completed NPC1 Quest
+        flagValue: 1
+      - choiceText: Not yet.
+        nextNode:
+          dialogText: 
+          choices: []
+        flagToSet: 
+        flagValue: 0
